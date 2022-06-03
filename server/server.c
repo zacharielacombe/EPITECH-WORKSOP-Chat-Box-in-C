@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** -EPITECH-WORKSOP-Chat-Box-in-C
+** EPITECH-WORKSOP-Chat-Box-in-C
 ** File description:
 ** server
 */
@@ -9,5 +9,5 @@
 
 void server(int port)
 {
-    
+    return;
 }

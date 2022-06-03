@@ -1,0 +1,4 @@
+*.o
+run_server
+run_client
+.vscode

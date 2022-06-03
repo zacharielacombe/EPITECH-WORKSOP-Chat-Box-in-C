@@ -5,39 +5,39 @@
 ## Makefile
 ##
 
-
 SRC_SERVER	=	server/main.c \
-				include/error_handling.c	\
+				server/error_handling.c	\
 				server/server.c	\
 
 SRC_CLIENT	=	client/main.c \
-				include/error_handling.c	\
+				client/error_handling.c	\
 				client/client.c	\
 
 OBJ_SERVER	=	$(SRC_SERVER:.c=.o)
 
 OBJ_CLIENT	=	$(SRC_CLIENT:.c=.o)
 
-CFLAGS += -I./include
+CFLAGS 	= 	-Wall -Wextra -g3
+CFLAGS	= 	-I./server -I./client
 
-NAME_SERVER	=	run_server
+SERVER_NAME	=	run_server
 
-NAME_CLIENT	=	run_client
+CLIENT_NAME	=	run_client
 
-all:	compile
+all: server client
 
-compile: $(OBJ_SERVER) $(OBJ_CLIENT)
-		gcc -o $(NAME_SERVER) $(OBJ_SERVER)
-		gcc -o $(NAME_CLIENT) $(OBJ_CLIENT)
+server: $(OBJ_SERVER)
+		gcc -o $(SERVER_NAME) $(OBJ_SERVER)
 
+client: $(OBJ_CLIENT)
+		gcc -o $(CLIENT_NAME) $(OBJ_CLIENT)
 
 clean:
 		rm -f $(OBJ_SERVER)
 		rm -f $(OBJ_CLIENT)
 
-
 fclean: clean
-		rm -f $(NAME_SERVER)
-		rm -f $(NAME_CLIENT)
+		rm -f $(SERVER_NAME)
+		rm -f $(CLIENT_NAME)
 
 re:	fclean all
