@@ -74,9 +74,9 @@ addr_client.sin_addr.s_addr = inet_addr(ip_address);
 ```
 ## II.c : Get the client input without
 Using the select function (man select) give your client socket and stdin, the standard input. By doing so you can know get the input from the terminal without blocking anything.
-## II.e : Send the input to the server
+## II.d : Send the input to the server
 Using the macro FD_ISSET check if your client socket is writable and send the data to the server.
-## II.f : Receive the data from the server
+## II.e : Receive the data from the server
 Using same macro as before check if the client is readable and receive the data from the server.
 
 # Bonus
