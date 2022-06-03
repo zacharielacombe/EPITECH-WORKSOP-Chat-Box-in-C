@@ -29,7 +29,7 @@ addr_server.sin_family = AF_INET;
 addr_server.sin_port = htons(port);
 addr_server.sin_addr.s_addr = inet_addr(ip_address);
 ```
-Then, use the listen function (man listen) to mark the socket of the server referred to by "sockfd" as a passive socket that can accept incoming connections.
+Then, use the listen function (man listen) to mark the socket of the server referred to "sockfd" as a passive socket that can accept incoming connections.
 ## I.b : Accept a connection
 Using the function accept (man accept) accept a new connection to your server. You can use Telnet to test if your server is accepting connections properly.
 ## I.c : Receive data from the client
