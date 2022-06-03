@@ -21,7 +21,7 @@ sudo dnf install telnet telnet-server
 # Step I : Server
 Basically you have to make a server that can get multiple connections and if a message is sent by one the client, every client should get the message.
 ## I.a : Initialisation
-Create a socket with IPv4 addressing and a TCP communication (man socket). 
+Create a socket with IPv4 addressing and a TCP communication (man socket).
 Bind the socket to the following address : 
 ```c
 struct sockaddr_in addr_server;
@@ -34,16 +34,32 @@ Then, use the listen function (man listen) to marks the socket of the server ref
 Using the function accept (man accept) accept a new connection to your server. You can use Telnet to test if your server is accepting connections properly.
 ## I.c : Receive data from the client
 You can now receive data from your client by using the socket given by the accept function and asking it to receive data from this file descriptor.
+
+With the recv function (man recv) you can receive data from any file descriptor.
 ## I.d : Accept multiple connections
+Lets start the hard part, the select part.
+Create a loop 
 ## I.e : Receive data from multiple clients
+Using the array of client you created in the last step, go through the entire array and ask if every socket is readable using the FD_ISSET macro.
 ## I.f : Send some data to everybody
+Using the same logic from the last step, go through the array of client and using the send function (man send) send to each client who is writable the given data.
 
 # Step II : Client
 ## II.a : Initialisation
+Create a socket with IPv4 addressing and a TCP communication (man socket).
 ## II.b : Connect to the server
+With the same address as the server use the connect function (man connect) and give it the client socket and the client address.
+```c
+struct sockaddr_in addr_server;
+addr_client.sin_family = AF_INET;
+addr_client.sin_port = htons(port);
+addr_client.sin_addr.s_addr = inet_addr(ip_address);
+```
 ## II.c : Get the client input without
 ## II.e : Send the input to the server
+Using the macro FD_ISSET check if your client socket is writable and send the data to the server.
 ## II.f : Receive the data from the server
+Using same macro as before check if the client is readable and receive the data from the server.
 
 # Bonus
 Be creative try to improve your chat box by adding usernames, login, error handling server-side.
