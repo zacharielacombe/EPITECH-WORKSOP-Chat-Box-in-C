@@ -38,7 +38,14 @@ You can now receive data from your client by using the socket given by the accep
 With the recv function (man recv) you can receive data from any file descriptor.
 ## I.d : Accept multiple connections
 Lets start the hard part, the select part.
-Create a loop 
+Here is some documentation : https://pubs.opengroup.org/onlinepubs/7908799/xsh/select.html#:~:text=The%20select()%20function%20tests,descriptors%20are%20ready%20to%20read.
+Create three structures :
+```c
+fd_set fds;
+fd_set rfds;
+fd_set wfds;
+```
+Create a loop where your select get the readable and writable 
 ## I.e : Receive data from multiple clients
 Using the array of client you created in the last step, go through the entire array and ask if every socket is readable using the FD_ISSET macro.
 ## I.f : Send some data to everybody
