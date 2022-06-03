@@ -39,13 +39,23 @@ With the recv function (man recv) you can receive data from any file descriptor.
 ## I.d : Accept multiple connections
 Lets start the hard part, the select part.
 Here is some documentation : https://pubs.opengroup.org/onlinepubs/7908799/xsh/select.html#:~:text=The%20select()%20function%20tests,descriptors%20are%20ready%20to%20read.
-Create three structures :
+Create three structures and set them to 0.
 ```c
 fd_set fds;
 fd_set rfds;
 fd_set wfds;
 ```
-Create a loop where your select get the readable and writable 
+The fds structure is here to collect every new client. The rfds and wfds is used to copy the data from fds and to get filtred by select.
+
+Create a server_loop function where your select get the readable and writable file descriptors.
+To get new connection you just have to know if your socket server is readable by using the FD_ISSET macro, example :
+```c
+if (FD_ISSET(server_socket, &rfds))
+{
+  // accept new connection
+}
+```
+If the server socket is readable it means that a new connection is available. Now set the new client socket to fds using FD_SET.
 ## I.e : Receive data from multiple clients
 Using the array of client you created in the last step, go through the entire array and ask if every socket is readable using the FD_ISSET macro.
 ## I.f : Send some data to everybody
@@ -63,6 +73,7 @@ addr_client.sin_port = htons(port);
 addr_client.sin_addr.s_addr = inet_addr(ip_address);
 ```
 ## II.c : Get the client input without
+Using the select function (man select) give your client socket and stdin, the standard input. By doing so you can know get the input from the terminal without blocking anything.
 ## II.e : Send the input to the server
 Using the macro FD_ISSET check if your client socket is writable and send the data to the server.
 ## II.f : Receive the data from the server
