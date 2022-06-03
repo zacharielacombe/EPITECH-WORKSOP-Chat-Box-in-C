@@ -1,5 +1,5 @@
 # Chat-Box-in-C
-Hello everyone here is a little worshop about network programming in C. You will realise a simple non-local chat box using select.
+Hello everyone here is a little workshop about network programming in C. You will realise a simple non-local chat box using select.
 
 💡If you don't understand anything about select dont forget to ask one of the manager of the workshop
 
@@ -19,7 +19,7 @@ sudo dnf install dnf-plugins-core -y
 sudo dnf install telnet telnet-server
 ```
 # Step I : Server
-Basically you have to make a server that can get multiple connections and if a message is sent by one the client, every client should get the message.
+Basically, you have to make a server that can get multiple connections and if a message is sent by one the client, every client should get the message.
 ## I.a : Initialisation
 Create a socket with IPv4 addressing and a TCP communication (man socket).
 Bind the socket to the following address : 
@@ -29,7 +29,7 @@ addr_server.sin_family = AF_INET;
 addr_server.sin_port = htons(port);
 addr_server.sin_addr.s_addr = inet_addr(ip_address);
 ```
-Then, use the listen function (man listen) to marks the socket of the server referred to by "sockfd" as a passive socket taht can accept incoming connections.
+Then, use the listen function (man listen) to mark the socket of the server referred to by "sockfd" as a passive socket that can accept incoming connections.
 ## I.b : Accept a connection
 Using the function accept (man accept) accept a new connection to your server. You can use Telnet to test if your server is accepting connections properly.
 ## I.c : Receive data from the client
@@ -73,11 +73,11 @@ addr_client.sin_port = htons(port);
 addr_client.sin_addr.s_addr = inet_addr(ip_address);
 ```
 ## II.c : Get the client input without
-Using the select function (man select) give your client socket and stdin, the standard input. By doing so you can know get the input from the terminal without blocking anything.
+Using the select function (man select) gives your client socket and stdin, the standard input. By doing so you can know get the input from the terminal without blocking anything.
 ## II.d : Send the input to the server
 Using the macro FD_ISSET check if your client socket is writable and send the data to the server.
 ## II.e : Receive the data from the server
-Using same macro as before check if the client is readable and receive the data from the server.
+Using same macro as before, check if the client is readable and receive the data from the server.
 
 # Bonus
 Be creative try to improve your chat box by adding usernames, login, error handling server-side.
