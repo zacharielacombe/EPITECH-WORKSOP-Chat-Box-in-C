@@ -7,7 +7,7 @@ Hello everyone here is a little workshop about network programming in C. You wil
 # Prerequisit
 For the first step you will not write the client yet so to test your server you could use Telnet.
 
-Here is the install :
+Here is how to install it :
 
 Ubuntu :
 ```shell
@@ -19,7 +19,7 @@ sudo dnf install dnf-plugins-core -y
 sudo dnf install telnet telnet-server
 ```
 # Step I : Server
-Basically, you have to make a server that can get multiple connections and if a message is sent by one the client, every client should get the message.
+Basically, you have to make a server that can get multiple connections and if a message is sent by one of the client, every clients should get the message.
 ## I.a : Initialisation
 Create a socket with IPv4 addressing and a TCP communication (man socket).
 Bind the socket to the following address : 
