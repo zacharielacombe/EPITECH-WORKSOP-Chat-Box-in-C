@@ -23,9 +23,19 @@ sudo dnf install telnet telnet-server
 # Step I : Server
 Basically you have to make a server that can get multiple connections and if a message is sent by one the client, every client should get the message.
 ## I.a : Initialisation
-## I.b : Accept a connection
-## I.c : Accept multiple connections
-## I.d
 Your server must be initialised in a certain way.
+## I.b : Accept a connection
+## I.c : Receive data from the client
+## I.d : Accept multiple connections
+## I.e : Receive data from multiple clients
+## I.f : Send some data to everybody
+
 # Step II : Client
-## Step II.a : Initialisation
+## II.a : Initialisation
+## II.b : Connect to the server
+## II.c : Get the client input without
+## II.e : Send the input to the server
+## II.f : Receive the data from the server
+
+# Bonus
+Be creative try to improve your chat box by adding usernames, login, error handling server-side.
