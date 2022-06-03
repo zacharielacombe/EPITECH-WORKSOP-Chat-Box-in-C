@@ -59,7 +59,7 @@ If the server socket is readable it means that a new connection is available. No
 ## I.e : Receive data from multiple clients
 Using the array of client you created in the last step, go through the entire array and ask if every socket is readable using the FD_ISSET macro.
 ## I.f : Send some data to everybody
-Using the same logic from the last step, go through the array of client and using the send function (man send) send to each client who is writable the given data.
+Using the same logic from the last step, go through the array of client and using the send function (man send), send to each client who is writable the given data.
 
 # Step II : Client
 ## II.a : Initialisation
@@ -72,7 +72,7 @@ addr_client.sin_family = AF_INET;
 addr_client.sin_port = htons(port);
 addr_client.sin_addr.s_addr = inet_addr(ip_address);
 ```
-## II.c : Get the client input without
+## II.c : Get the client input without getline
 Using the select function (man select) gives your client socket and stdin, the standard input. By doing so you can know get the input from the terminal without blocking anything.
 ## II.d : Send the input to the server
 Using the macro FD_ISSET check if your client socket is writable and send the data to the server.
