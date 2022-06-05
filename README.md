@@ -19,9 +19,11 @@ sudo dnf install dnf-plugins-core -y
 sudo dnf install telnet telnet-server
 ```
 # Before starting anything...
-Every thing written the the following step is not what you should absolutly do, you are free to try different ways of acheiving the same gaol.
+Everything written in the following steps is not what you should absolutely do, you are free to try different ways of achieving the same goal.
 
-There are juste one mandatory : you have to use select to communicate with your clients. That's it.
+There are just one mandatory : you have to use select to communicate with your clients. That's it.
+
+Also, a Makefile is provided use it to compile your program just add your files there.
 # Step I : Server
 Basically, you have to make a server that can get multiple connections and if a message is sent by one of the client, every clients should get the message.
 ## I.a : Initialisation
