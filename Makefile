@@ -5,13 +5,13 @@
 ## Makefile
 ##
 
-SRC_SERVER	=	server/main.c \
-				server/error_handling.c	\
-				server/server.c	\
+SRC_SERVER	=	src/server/main.c \
+				src/server/error_handling.c	\
+				src/server/server.c	\
 
-SRC_CLIENT	=	client/main.c \
-				client/error_handling.c	\
-				client/client.c	\
+SRC_CLIENT	=	src/client/main.c \
+				src/client/error_handling.c	\
+				src/client/client.c	\
 
 OBJ_SERVER	=	$(SRC_SERVER:.c=.o)
 
@@ -20,9 +20,9 @@ OBJ_CLIENT	=	$(SRC_CLIENT:.c=.o)
 CFLAGS 	= 	-Wall -Wextra -g3
 CFLAGS	= 	-I./server -I./client
 
-SERVER_NAME	=	run_server
+SERVER_NAME	=	server
 
-CLIENT_NAME	=	run_client
+CLIENT_NAME	=	client
 
 all: server client
 

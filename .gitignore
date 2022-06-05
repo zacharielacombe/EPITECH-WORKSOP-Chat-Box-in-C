@@ -1,4 +1,4 @@
 *.o
-run_server
-run_client
+server
+client
 .vscode
