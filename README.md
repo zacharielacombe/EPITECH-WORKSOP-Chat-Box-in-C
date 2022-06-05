@@ -18,6 +18,10 @@ Fedora :
 sudo dnf install dnf-plugins-core -y
 sudo dnf install telnet telnet-server
 ```
+# Before starting anything...
+Every thing written the the following step is not what you should absolutly do, you are free to try different ways of acheiving the same gaol.
+
+There are juste one mandatory : you have to use select to communicate with your clients. That's it.
 # Step I : Server
 Basically, you have to make a server that can get multiple connections and if a message is sent by one of the client, every clients should get the message.
 ## I.a : Initialisation
@@ -87,6 +91,9 @@ addr.sin_addr.s_addr = inet_addr(ip_address);
 ## II.b : Connect to the server
 With the address you have initialise use the ```connect()``` function (man connect) and give it the client socket and the client address.
 ## II.c : Get the client input without getline
+So yeah, there is a problem, how should I get the input of the keyboard without blocking the all program and without using a thread ?
+
+It's quit simple, by giving the standard input to select, he can know when the standard input is readable. ```ian a dan le ciboulo hein ?```
 ### In the init_client.c file
 Using ```FD_SET``` add the stdin file descriptor to your fds.
 ### In the run_client.c file
