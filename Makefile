@@ -6,11 +6,16 @@
 ##
 
 SRC_SERVER	=	src/server/main.c \
+				src/server/get_hostname.c \
 				src/server/error_handling.c	\
+				src/server/init_server.c \
+				src/server/launch_server.c \
 				src/server/server.c	\
 
 SRC_CLIENT	=	src/client/main.c \
 				src/client/error_handling.c	\
+				src/client/init_client.c \
+				src/client/launch_client.c \
 				src/client/client.c	\
 
 OBJ_SERVER	=	$(SRC_SERVER:.c=.o)
@@ -18,7 +23,6 @@ OBJ_SERVER	=	$(SRC_SERVER:.c=.o)
 OBJ_CLIENT	=	$(SRC_CLIENT:.c=.o)
 
 CFLAGS 	= 	-Wall -Wextra -g3
-CFLAGS	= 	-I./server -I./client
 
 SERVER_NAME	=	server
 
