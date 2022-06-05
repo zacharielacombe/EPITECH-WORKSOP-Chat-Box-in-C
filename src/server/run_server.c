@@ -2,12 +2,12 @@
 ** EPITECH PROJECT, 2022
 ** EPITECH-WORKSOP-Chat-Box-in-C
 ** File description:
-** launch_client
+** run_server
 */
 
-#include "client.h"
+#include "server.h"
 
-void launch_client(client_t *client)
+void run_server(server_t *server)
 {
     return;
 }

@@ -44,5 +44,5 @@ typedef struct server_s {
 int error_handling(int ac, char *port);
 char *get_hostname(void);
 server_t *init_server(char *ip_addr, int port);
-void launch_server(server_t *server);
+void run_server(server_t *server);
 void server(char *ip_addr, int port);

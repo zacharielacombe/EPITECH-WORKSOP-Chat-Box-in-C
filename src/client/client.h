@@ -33,5 +33,5 @@ typedef struct client_s {
 
 int error_handling(int ac, char *port);
 client_t *init_client(char *ip_addr, int port);
-void launch_client(client_t *client);
+void run_client(client_t *client);
 void client(char *ip_addr, int port);

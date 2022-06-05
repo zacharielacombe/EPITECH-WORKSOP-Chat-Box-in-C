@@ -9,13 +9,13 @@ SRC_SERVER	=	src/server/main.c \
 				src/server/get_hostname.c \
 				src/server/error_handling.c	\
 				src/server/init_server.c \
-				src/server/launch_server.c \
+				src/server/run_server.c \
 				src/server/server.c	\
 
 SRC_CLIENT	=	src/client/main.c \
 				src/client/error_handling.c	\
 				src/client/init_client.c \
-				src/client/launch_client.c \
+				src/client/run_client.c \
 				src/client/client.c	\
 
 OBJ_SERVER	=	$(SRC_SERVER:.c=.o)

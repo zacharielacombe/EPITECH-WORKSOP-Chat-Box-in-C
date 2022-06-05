@@ -11,7 +11,7 @@ void server(char *ip_addr, int port)
 {
     server_t *server = init_server(ip_addr, port);
 
-    launch_server(server);
+    run_server(server);
 
     return;
 }
