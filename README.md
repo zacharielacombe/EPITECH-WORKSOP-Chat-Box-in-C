@@ -29,7 +29,7 @@ Basically, you have to make a server that can get multiple connections and if a 
 ## I.a : Initialisation
 Go in the ```init_server()``` function.
 
-Create a socket with IPv4 addressing and a TCP communication using the ```sucket()``` function (man socket).
+Create a socket with IPv4 addressing and a TCP communication using the ```socket()``` function (man socket).
 Bind the socket to the following address using ```bind()``` (man bind) : 
 ```c
 struct sockaddr_in addr_server;
