@@ -24,9 +24,9 @@ typedef struct server_s {
     struct sockaddr_in addr;
     struct timeval timeout;
 
-    fd_set readfds;     //> array of file descriptors ready to be read.
-    fd_set writefds;    //> array of file descriptors ready to be write.
-    fd_set fds;         //> array of all file descriptors.
+    fd_set readfds;     //> contain of file descriptors ready to be read.
+    fd_set writefds;    //> contain of file descriptors ready to be write.
+    fd_set fds;         //> contain of all file descriptors.
 
     char *ip_addr;
 
