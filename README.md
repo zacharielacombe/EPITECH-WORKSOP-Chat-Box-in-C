@@ -21,8 +21,8 @@ sudo dnf install telnet telnet-server
 # Step I : Server
 Basically, you have to make a server that can get multiple connections and if a message is sent by one of the client, every clients should get the message.
 ## I.a : Initialisation
-Create a socket with IPv4 addressing and a TCP communication (man socket).
-Bind the socket to the following address : 
+Create a socket with IPv4 addressing and a TCP communication using the ```sucket()``` function (man socket).
+Bind the socket to the following address using ```bind()``` (man bind) : 
 ```c
 struct sockaddr_in addr_server;
 addr_server.sin_family = AF_INET;
