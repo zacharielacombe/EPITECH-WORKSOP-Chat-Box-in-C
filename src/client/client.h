@@ -21,6 +21,9 @@
 #include <stdio.h>
 
 typedef struct client_s {
+    struct sockaddr_in addr;
+    struct timeval timeout;
+
     fd_set readfds;
     fd_set writefds;
     fd_set fds;

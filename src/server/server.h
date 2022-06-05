@@ -20,14 +20,8 @@
 #include <netdb.h>
 #include <stdio.h>
 
-typedef struct sockaddr_in SOCKADDR_IN;
-typedef struct sockaddr SOCKADDR;
-typedef struct in_addr IN_ADDR;
-typedef int SOCKET;
-typedef struct timeval timeval_t;
-
 typedef struct server_s {
-    struct sockaddr_in addr_server;
+    struct sockaddr_in addr;
     struct timeval timeout;
 
     fd_set readfds;     //> array of file descriptors ready to be read.
