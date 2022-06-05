@@ -1,7 +1,7 @@
 # Chat-Box-in-C
 Hello everyone here is a little workshop about network programming in C. You will realise a simple non-local chat box using select.
 
-💡If you don't understand anything about select dont forget to ask one of the manager of the workshop
+💡 If you don't understand anything about select dont forget to ask one of the manager of the workshop
 
 
 # Prerequisit
@@ -18,7 +18,7 @@ Fedora :
 sudo dnf install dnf-plugins-core -y
 sudo dnf install telnet telnet-server
 ```
-# Before starting anything...
+# 💡 Before starting anything...
 Everything written in the following steps is not what you should absolutely do, you are free to try different ways of achieving the same goal.
 
 There are just one mandatory : you have to use select to communicate with your clients. That's it.
