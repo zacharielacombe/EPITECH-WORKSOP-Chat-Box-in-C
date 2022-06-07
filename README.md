@@ -106,4 +106,4 @@ Using the macro ```FD_ISSET``` check if your client socket is writable and send 
 Using same macro as before, check if the client is readable and receive the data from the server.
 
 # Bonus
-Be creative try to improve your chat box by adding usernames, login, error handling (server-side only), colors, even shell embebed games (yeah it not that difficult, you just have to get the input of the client and send him the output of the game. It's like cloud gaming.).
+Be creative try to improve your chat box by adding usernames, login, error handling (server-side only), colors, the ability of the server to send message from his standard input to the clients, or even shell embebed games (yeah it not that difficult, you just have to get the input of the client and send him the output of the game. It's like cloud gaming.).
