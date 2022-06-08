@@ -39,32 +39,56 @@ addr_server.sin_addr.s_addr = inet_addr(ip_address);
 ```
 Then, use the listen function (man listen) to mark the socket of the server referred to "sockfd" as a passive socket that can accept incoming connections.
 ## I.b : Accept a connection
-Using the function accept (man accept) accept a new connection to your server. You can use Telnet to test if your server is accepting connections properly.
+Using the function ```accept()``` (man accept) accept a new connection to your server. You can use Telnet to test if your server is accepting connections properly.
 ## I.c : Receive data from the client
 You can now receive data from your client by using the socket given by the accept function and asking it to receive data from this file descriptor.
 
-With the recv function (man recv) you can receive data from any file descriptor.
+With the ```recv()``` function (man recv) you can receive data from any file descriptor.
 ## I.d : Accept multiple connections
 Lets start the hard part, the select part.
 Here is some documentation : https://pubs.opengroup.org/onlinepubs/7908799/xsh/select.html#:~:text=The%20select()%20function%20tests,descriptors%20are%20ready%20to%20read.
+
+You will use the three structures, ```fd_set fds```, ```fd_set wfds``` and ```fd_set rfds``` located in the ```server_t``` structure in the server.h include for the select function.
 ### In the init_server.c file
-With the three structures ```fd_set``` located in the ```server_t``` structure and set them to 0 in the ```init_server()``` function.
 ```c
 fd_set fds;
 fd_set rfds;
 fd_set wfds;
 ```
-```fd_set``` is a structure that can contain any file descriptor, so we will use the varaible ```fds``` in our ```server_t``` structure to contain all of our new clients.
+```fd_set``` is a structure that can contain any file descriptor, it look like that :
+```c
+typedef struct fd_set {
+  unsigned int fd_count;       /* how many are set */
+  int  fd_array[FD_SETSIZE];   /* an array of fd */
+} fd_set;
+```
+So we will use the variable ```fds``` in our ```server_t``` structure to contain all of our new clients.
 First of all we have to give our server socket so we can accept new connections using ```fds```.
 
-Use the macro ```FD_SET``` (man select) to give a nex file descriptor to the structure.
+Use the macro ```FD_SET``` (man select) to give a new file descriptor to the structure. Next to all of that, you have to keep track of all our file descriptors. To do that, using the ```int *fd_array``` variable in the ```server_t``` structure, you will add every new socket or delete if a connection is closed.
 
-The fds structure is here to collect every new client. The rfds and wfds is used to copy the data from fds and to get filtred by select.
+The ```fds``` structure is here to collect every new client. The ```rfds``` and ```wfds``` is used to copy the data from ```fds``` and to get filtered by select.
+
+## ```select()``` simple explanation for smooth brains :
+Basically, ```select()``` is a function that filter ```readfds```, ```writefds``` and ```exceptfds``` (we will not use the third fds).
+
+It removes the file descriptors in the array of file descriptors of ```readfds``` if the read action is blocking and do the same for the ```writefds``` if the write action is blocking.
+
+### If you want a little example :
+This is your array of file descriptors inside the ```fd_set``` structure : ```fd_array[] = [3, 5, 7, 8, 12]```.
+
+You will give the address of the structure to select and it will remove the blocking file descriptors.
+
+So if the select have removed some file descriptors you will get that after the function have finised : ```fd_array[] = [5, 8, 12]```.
+
+So when the ```select()``` function have finished to check every file descriptor and remove the blocking ones, it will return the total number of non blocking file descriptors and you will have your ```fd_set``` filtered. That's where you will use the macro ```FD_ISSET``` (man select) to check if a file descriptor still exists in your fd_set.
+
+If you have a very smooth brain, don't worry you can ask help at any moment.
 
 ### In the run_server.c file :
 Create a server_loop function where you copy fds to rfds and write fds. With thoses,y our select get the readable and writable file descriptors and can return you the available file descriptors.
 
-To get new connection you just have to know if your server socket is readable by using the ```FD_ISSET``` (man select) macro, example :
+To get new connection you just have to know if your server socket is readable by using the ```FD_ISSET``` macro, example :
 ```c
 if (FD_ISSET(server_socket, &rfds))
 {
@@ -73,7 +97,7 @@ if (FD_ISSET(server_socket, &rfds))
 ```
 If the server socket is readable it means that a new connection is available. Now set the new client socket to fds using FD_SET.
 
-the ```fd_set``` structure will store your client, but to handle them, create a array of file descriptors to store each new client.
+Don't forget to use your array of client to store each new client.
 ## I.e : Receive data from multiple clients
 Using the array of client you created in the last step, go through the entire array and ask if every socket is readable using the ```FD_ISSET``` macro, and use the ```recv()``` function to receive new data.
 ## I.f : Send some data to everybody
