@@ -123,7 +123,7 @@ It's quit simple, by giving the standard input to select, he can know when the s
 ### In the init_client.c file
 Using ```FD_SET``` add the stdin file descriptor to your fds.
 ### In the run_client.c file
-Using the ```select()``` you can know get the input from the terminal without blocking anything.
+Get the input of the client without blocking anything.
 ## II.d : Send the input to the server
 Using the macro ```FD_ISSET``` check if your client socket is writable and send the data to the server.
 ## II.e : Receive the data from the server
