@@ -14,5 +14,7 @@ client_t *init_client(char *ip_addr, int port)
     client->ip_addr = ip_addr;
     client->port = port;
 
+    // init client addr
+
     return client;
 }

@@ -30,6 +30,8 @@ typedef struct server_s {
 
     char *ip_addr;
 
+    int *fd_array;
+
     int socket;
     int fdmax;
     int port;
