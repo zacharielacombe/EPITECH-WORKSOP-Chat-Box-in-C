@@ -13,8 +13,11 @@ client_t *init_client(char *ip_addr, int port)
 
     client->ip_addr = ip_addr;
     client->port = port;
-
-    // init client addr
+    socket(AF_INET, SOCK_STREAM, 0);
+    struct sockaddr_in addr_server;
+    addr_server.sin_family = AF_INET;
+    addr_server.sin_port = htons(port);
+    addr_server.sin_addr.s_addr = inet_addr(ip_addr);
 
     return client;
 }
